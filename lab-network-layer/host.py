@@ -27,47 +27,47 @@ IPPROTO_TCP = 6 # Transmission Control Protocol
 IPPROTO_UDP = 17 # User Datagram Protocol
 
 class Host(BaseHost):
-    def __init__(self, ip_forward):
+    def __init__(self, ip_forward: bool):
         super(Host, self).__init__()
 
         self._ip_forward = ip_forward
 
         # do any additional initialization here
 
-    def _handle_frame(self, frame, intf):
+    def _handle_frame(self, frame: bytes, intf: str) -> None:
         pass
 
-    def handle_ip(self, pkt, intf):
+    def handle_ip(self, pkt: bytes, intf: str) -> None:
         pass
 
-    def handle_tcp(self, pkt):
+    def handle_tcp(self, pkt: bytes) -> None:
         pass
 
-    def handle_udp(self, pkt):
+    def handle_udp(self, pkt: bytes) -> None:
         pass
 
-    def handle_arp(self, pkt, intf):
+    def handle_arp(self, pkt: bytes, intf: str) -> None:
         pass
 
-    def handle_arp_response(self, pkt, intf):
+    def handle_arp_response(self, pkt: bytes, intf: str) -> None:
         pass
 
-    def handle_arp_request(self, pkt, intf):
+    def handle_arp_request(self, pkt: bytes, intf: str) -> None:
         pass
 
-    def send_packet_on_int(self, pkt, intf, next_hop):
+    def send_packet_on_int(self, pkt, intf, next_hop) -> None:
         print(f'Attempting to send packet on {intf} with next hop {next_hop}:\n{repr(pkt)}')
 
-    def send_packet(self, pkt):
+    def send_packet(self, pkt: bytes) -> None:
         print(f'Attempting to send packet:\n{repr(pkt)}')
 
-    def forward_packet(self, pkt):
+    def forward_packet(self, pkt: bytes) -> None:
         pass
 
-    def not_my_frame(self, frame, intf):
+    def not_my_frame(self, frame: bytes, intf: str) -> None:
         pass
 
-    def not_my_packet(self, pkt, intf):
+    def not_my_packet(self, pkt: bytes, intf: str) -> None:
         pass
 
 def main():

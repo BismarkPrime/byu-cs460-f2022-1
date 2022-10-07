@@ -38,7 +38,7 @@ class ForwardingTable(object):
     def __init__(self):
         self.entries = {}
 
-    def add_entry(self, prefix, intf, next_hop):
+    def add_entry(self, prefix: str, intf: str, next_hop: str) -> None:
         '''Add forwarding entry mapping prefix to interface and next hop
         IP address.
 
@@ -52,7 +52,7 @@ class ForwardingTable(object):
 
         self.entries[prefix] = (intf, next_hop)
 
-    def remove_entry(self, prefix):
+    def remove_entry(self, prefix: str) -> None:
         '''Remove the forwarding entry matching prefix.
 
         prefix: str
@@ -63,7 +63,7 @@ class ForwardingTable(object):
         if prefix in self.entries:
             del self.entries[prefix]
 
-    def flush(self, family=None, global_only=True):
+    def flush(self, family: int=None, global_only: bool=True) -> None:
         '''
         Flush the routing table.
 
@@ -76,7 +76,7 @@ class ForwardingTable(object):
         for prefix in routes:
             self.remove_entry(prefix)
 
-    def get_entry(self, address):
+    def get_entry(self, address: str) -> tuple[str, str]:
         '''Return the subnet entry having the longest prefix match of
         address.  The entry is a tuple consisting of interface and
         next-hop IP address.  If there is no match, return None, None.
